@@ -24,10 +24,12 @@ public class GameField : MonoBehaviour
      #region ---------- [ Game field ]
 
      public Vector2Int        fieldSize = new Vector2Int(20, 10);
-     private GameBlock[,]      _gameFieldArray;
+     private GameBlock[,]     _gameFieldArray;
      
      #endregion
 
+     #region ---------- [ Main methods ]
+     
      private void Start()
      {
           InitializeGameFieldArray();
@@ -39,4 +41,6 @@ public class GameField : MonoBehaviour
 
           Debug.Log("GameField // Game field initialized with " + fieldSize.x * fieldSize.y + " spaces");
      }
+     
+     #endregion
 }
