@@ -271,6 +271,7 @@ GameObject:
   - component: {fileID: 387542702}
   - component: {fileID: 387542701}
   - component: {fileID: 387542700}
+  - component: {fileID: 387542703}
   m_Layer: 0
   m_Name: TestPhysicsObject
   m_TagString: Untagged
@@ -335,12 +336,25 @@ Transform:
   m_GameObject: {fileID: 387542699}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.714, z: 1.845}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &387542703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 387542699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60b167543aac6e44fa5bd3dba4efec2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemData: {fileID: 11400000, guid: ea8f0e7a877ce2845ae5eeddc19cd686, type: 2}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -523,9 +537,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inputAxis: {x: 0, y: 0}
-  _movementTarget: {x: 0, y: 0, z: 0}
-  _rotationQuaternion: {x: 0, y: 0, z: 0, w: 1}
-  _desiredForward: {x: 0, y: 0, z: 0}
   _rigidbody: {fileID: 541637235}
   _turnSpeed: 30
   _movementSpeedMultiplier: 0.2
@@ -784,7 +795,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}

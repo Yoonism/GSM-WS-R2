@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2560
     height: 1349.3334
   m_ShowMode: 4
-  m_Title: Inspector
+  m_Title: Game
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 321}
   m_MaxSize: {x: 10000, y: 10000}
@@ -322,7 +322,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/Items
+    - Assets/Scripts/Control
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -330,16 +330,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Scripts/Items
+  - Assets/Scripts/Control
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\GitKraken\GSM-WS-R2
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: ac6a0000
-    m_LastClickedID: 27308
-    m_ExpandedIDs: 0000000096680000126a000000ca9a3bffffff7f
+    m_SelectedIDs: a86a0000
+    m_LastClickedID: 27304
+    m_ExpandedIDs: 00000000a2680000206a000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -367,7 +367,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000096680000
+    m_ExpandedIDs: 00000000a2680000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -398,18 +398,18 @@ MonoBehaviour:
     m_ExpandedInstanceIDs: c6230000feb90000720700001c060000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: Cylinder
+      m_OriginalName: Cylinder
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 29448
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 5}
     m_CreateAssetUtility:
@@ -509,9 +509,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 24deffff
-      m_LastClickedID: -8668
-      m_ExpandedIDs: 2cfbffff2efbffff
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 8c92ffff2cf7ffff2cfbffff2efbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -860,7 +860,7 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: 48, y: 48}
+      snapOffset: {x: 48, y: 10.666687}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: UnityEditor.SceneViewCameraOverlay
@@ -970,9 +970,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 7.4575787, y: -7.219908, z: -0.14946261}
+    m_Target: {x: -8.777598, y: -5.292696, z: -6.879412}
     speed: 2
-    m_Value: {x: 7.4575787, y: -7.219908, z: -0.14946261}
+    m_Value: {x: -8.777598, y: -5.292696, z: -6.879412}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1018,9 +1018,9 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.23912647, y: -0.67372835, z: 0.24616733, w: -0.65446305}
+    m_Target: {x: 0.11128844, y: -0.851508, z: 0.2009926, w: 0.4713888}
     speed: 2
-    m_Value: {x: -0.23875558, y: -0.6747054, z: 0.24652433, w: -0.653448}
+    m_Value: {x: 0.111285314, y: -0.85148406, z: 0.20098695, w: 0.47137552}
   m_Size:
     m_Target: 9.0466
     speed: 2

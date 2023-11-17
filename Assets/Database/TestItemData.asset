@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: TestItem
   itemWeight: 200
+  itemPrefab: {fileID: 4990083849697502504, guid: 466ac8a4d3e601a47b4dcf61aacd7f07,
+    type: 3}

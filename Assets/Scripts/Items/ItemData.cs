@@ -8,9 +8,4 @@ public class ItemData : ScriptableObject
      public string       itemName       = "";
      public float        itemWeight     = 1f;
      public GameObject   itemPrefab;
-
-     private void Start()
-     {
-
-     }
 }

@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class ItemModule : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+     [SerializeField]
+     private ItemData _itemData;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+     private string _itemName = "";
+     private float _itemWeight = 1f;
+     private GameObject _itemPrefab;
+
+     private void Start()
+     {
+          InitializeItem();
+     }
+
+     private void InitializeItem()
+     {
+          _itemName = _itemData.itemName;
+          _itemWeight = _itemData.itemWeight;
+          _itemPrefab = Instantiate(_itemData.itemPrefab, transform);
+     }
 }
