@@ -8,6 +8,9 @@ public class PuppeteerPlayerInput : MonoBehaviour
      private Vector2     _inputAxis     = new Vector2();
 
      [SerializeField]
+     private bool[]      _inputAction   = new bool[2];
+
+     [SerializeField]
      private ActorModule _actorModuleToPosess;
      
      private void Update()
@@ -20,10 +23,13 @@ public class PuppeteerPlayerInput : MonoBehaviour
      {
           _inputAxis.x = Input.GetAxis("Horizontal");
           _inputAxis.y = Input.GetAxis("Vertical");
+
+          _inputAction[0] = Input.GetKeyDown(KeyCode.E);
+          _inputAction[1] = Input.GetKeyDown(KeyCode.R);
      }
 
      private void PushInputs()
      {
-          _actorModuleToPosess.RecieveInputs(_inputAxis);
+          _actorModuleToPosess.RecieveInputs(_inputAxis, _inputAction);
      }
 }
