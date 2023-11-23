@@ -13,7 +13,7 @@ public class PuppeteerPlayerInput : MonoBehaviour
      [SerializeField]
      private ActorModule _actorModuleToPosess;
      
-     private void Update()
+     private void FixedUpdate()
      {
           RecieveInputs();
           PushInputs();

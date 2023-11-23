@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class ActorModule : MonoBehaviour
 {
@@ -50,6 +52,8 @@ public class ActorModule : MonoBehaviour
      public HandState    handState                = HandState.Empty;
      public ActorState   actorState               = ActorState.Normal;
 
+     public bool isStunImmune = false;
+
      public void RecieveInputs(Vector2 inputAxisToRecieve, bool[] inputActionToRecieve)
      {
           _inputAxis = inputAxisToRecieve;
@@ -59,10 +63,16 @@ public class ActorModule : MonoBehaviour
 
      private void UpdateActor()
      {
+          if (actorState != ActorState.Normal) return;
           UpdateMovement();
           UpdateAction();
      }
-     
+
+     private void Update()
+     {
+          if(Input.GetKeyDown(KeyCode.Q)) ActorStun();
+     }
+
      private void UpdateMovement()
      {
           // set movement target
@@ -90,11 +100,9 @@ public class ActorModule : MonoBehaviour
           {
                case HandState.Empty:
                     AttemptHoldObject();
-                    handState = HandState.Holding;
                     break;
                case HandState.Holding:
                     AttemptReleaseObject();
-                    handState = HandState.Empty;
                     break;
                default:
                     Debug.LogError(gameObject.name + ".ActorModule // Unknown HandState");
@@ -122,7 +130,9 @@ public class ActorModule : MonoBehaviour
      private void ActionThrowObject()
      {
           AttemptReleaseObject();
-          _holdableRigidbody.AddForce(_desiredForward * 2000f);
+          _holdableRigidbody.AddForce(_desiredForward * 1000f);
+
+          StartCoroutine(ProcessStunImmunity());
      }
 
      private void AttemptHoldObject()
@@ -141,11 +151,58 @@ public class ActorModule : MonoBehaviour
                
                _holdableGameObject.transform.SetParent(_holdPositionTransform);
                _holdableGameObject.transform.localPosition = Vector3.zero;
+
+               handState = HandState.Holding;
           }
      }
 
      private void AttemptReleaseObject()
      {
           _holdableModule.ReleaseHold();
+          handState = HandState.Empty;
+     }
+
+     private void ActorStun()
+     {
+          if (actorState != ActorState.Stunned && !isStunImmune) StartCoroutine(ProcessStun());
+     }
+
+     private IEnumerator ProcessStun()
+     {
+          isStunImmune = true;
+          Vector3 forceVelocity = new Vector3();
+          forceVelocity.x = Random.Range(200f, 500f) * Mathf.Round(Random.Range(-1f, 1f));
+          forceVelocity.y = Random.Range(80f, 120f);
+          forceVelocity.z = Random.Range(200f, 500f) * Mathf.Round(Random.Range(-1f, 1f));
+
+          _rigidbody.AddForce(forceVelocity);
+          
+          actorState = ActorState.Stunned;
+          _rigidbody.freezeRotation = false;
+          yield return new WaitForSeconds(3f);
+
+          _rigidbody.freezeRotation = true;
+          actorState = ActorState.Normal;
+
+          isStunImmune = false;
+          yield return null;
+     }
+
+     private IEnumerator ProcessStunImmunity()
+     {
+          if (isStunImmune) yield return null;
+
+          isStunImmune = true;
+          yield return new WaitForSeconds(0.1f);
+          isStunImmune = false;
+          
+          yield return null;
+     }
+
+     private void OnTriggerEnter(Collider other)
+     {
+          float impactMagnitude = other.attachedRigidbody.velocity.magnitude;
+
+          if (impactMagnitude > 3f) ActorStun();
      }
 }
