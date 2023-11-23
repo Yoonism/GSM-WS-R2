@@ -35,12 +35,11 @@ public class ActorModule : MonoBehaviour
      private Rigidbody   _rigidbody;
      [SerializeField]
      private Transform   _holdPositionTransform;
-
-     [SerializeField]
+     
      private GameObject _holdableGameObject;
-
-     [SerializeField]
      private HoldableModule _holdableModule;
+     private Rigidbody _holdableRigidbody;
+     private HoldableModule.HoldableType _holdableType;
 
      [SerializeField]
      private float       _turnSpeed               = 30f;
@@ -82,6 +81,7 @@ public class ActorModule : MonoBehaviour
      private void UpdateAction()
      {
           if (_inputAction[0]) ActionHoldObject();
+          if (_inputAction[1]) ActionUseObject();
      }
 
      private void ActionHoldObject()
@@ -102,6 +102,29 @@ public class ActorModule : MonoBehaviour
           }
      }
 
+     private void ActionUseObject()
+     {
+          if (handState == HandState.Empty) return;
+
+          switch (_holdableType)
+          {
+               case HoldableModule.HoldableType.Trash:
+                    ActionThrowObject();
+                    break;
+               case HoldableModule.HoldableType.Tool:
+                    break;
+               default:
+                    Debug.LogError(gameObject.name + ".ActorModule // Unknown HoldableType");
+                    break;
+          }
+     }
+     
+     private void ActionThrowObject()
+     {
+          AttemptReleaseObject();
+          _holdableRigidbody.AddForce(_desiredForward * 2000f);
+     }
+
      private void AttemptHoldObject()
      {
           RaycastHit hit;
@@ -113,10 +136,11 @@ public class ActorModule : MonoBehaviour
                
                _holdableGameObject = hitTransform.parent.gameObject;
                _holdableModule = _holdableGameObject.GetComponent<HoldableModule>();
+               _holdableRigidbody = _holdableGameObject.GetComponent<Rigidbody>();
                _holdableModule.AttemptHold();
                
                _holdableGameObject.transform.SetParent(_holdPositionTransform);
-               hitTransform.localPosition = Vector3.zero;
+               _holdableGameObject.transform.localPosition = Vector3.zero;
           }
      }
 

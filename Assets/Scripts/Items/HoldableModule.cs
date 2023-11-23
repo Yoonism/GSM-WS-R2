@@ -13,7 +13,14 @@ public class HoldableModule : MonoBehaviour
           Stun
      }
 
+     public enum HoldableType
+     {
+          Trash = 0,
+          Tool
+     }
+
      public HoldableState holdableState      =    HoldableState.Free;
+     public HoldableType holdableType        =    HoldableType.Trash;
 
      public bool AttemptHold()
      {
