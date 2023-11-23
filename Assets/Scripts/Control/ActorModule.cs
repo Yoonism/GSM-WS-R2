@@ -19,9 +19,10 @@ public class ActorModule : MonoBehaviour
           Animation
      }
 
+     public string actorName = "Player";
+
      [SerializeField]
      private LayerMask   holdableObjectLayerMask;
-
      [SerializeField]
      private float       holdableRaycastDistance  = 5f;
      
@@ -47,7 +48,7 @@ public class ActorModule : MonoBehaviour
      private float       _turnSpeed               = 30f;
 
      [SerializeField]
-     private float       _movementSpeedMultiplier = 0.2f;
+     private float       _movementSpeedMultiplier = 10f;
 
      public HandState    handState                = HandState.Empty;
      public ActorState   actorState               = ActorState.Normal;
@@ -67,12 +68,7 @@ public class ActorModule : MonoBehaviour
           UpdateMovement();
           UpdateAction();
      }
-
-     private void Update()
-     {
-          if(Input.GetKeyDown(KeyCode.Q)) ActorStun();
-     }
-
+     
      private void UpdateMovement()
      {
           // set movement target
@@ -84,7 +80,7 @@ public class ActorModule : MonoBehaviour
           _rotationQuaternion = Quaternion.LookRotation(_desiredForward);
           
           // move rigidbody
-          _rigidbody.MovePosition(_rigidbody.position + _movementTarget * _movementSpeedMultiplier);
+          _rigidbody.MovePosition(_rigidbody.position + _movementTarget * _movementSpeedMultiplier * Time.deltaTime);
           _rigidbody.MoveRotation(_rotationQuaternion);
      }
 
@@ -129,8 +125,9 @@ public class ActorModule : MonoBehaviour
      
      private void ActionThrowObject()
      {
+          Vector3 throwForce = transform.TransformDirection(Vector3.forward) + new Vector3(0f, 0.3f, 0f);
           AttemptReleaseObject();
-          _holdableRigidbody.AddForce(_desiredForward * 1000f);
+          _holdableRigidbody.AddForce(throwForce * 2000f);
 
           StartCoroutine(ProcessStunImmunity());
      }
@@ -203,6 +200,6 @@ public class ActorModule : MonoBehaviour
      {
           float impactMagnitude = other.attachedRigidbody.velocity.magnitude;
 
-          if (impactMagnitude > 3f) ActorStun();
+          if (impactMagnitude > 8f) ActorStun();
      }
 }

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3801140880472300825}
   - component: {fileID: 1059288367127340414}
   m_Layer: 0
-  m_Name: HoldableObject
+  m_Name: hTrash_crumpledPaper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
