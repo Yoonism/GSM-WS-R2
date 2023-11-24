@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -25,10 +26,16 @@ public class ActorModule : MonoBehaviour
      private LayerMask   holdableObjectLayerMask;
      [SerializeField]
      private float       holdableRaycastDistance  = 5f;
+
+     [SerializeField]
+     private GameObject  actorStunEffect;
+
+     [SerializeField]
+     private Vector3 actorStunEffectOffset;
      
      [SerializeField]
      private Vector2     _inputAxis               = new Vector2();
-     private bool[]      _inputAction             = new bool[2];
+     private bool[]     _inputAction             = new bool[2];
      
      private Vector3     _movementTarget          = Vector3.zero;
      private Quaternion  _rotationQuaternion      = Quaternion.identity;
@@ -128,6 +135,7 @@ public class ActorModule : MonoBehaviour
           Vector3 throwForce = transform.TransformDirection(Vector3.forward) + new Vector3(0f, 0.3f, 0f);
           AttemptReleaseObject();
           _holdableRigidbody.AddForce(throwForce * 2000f);
+          _holdableModule.StartThrowRoutine();
 
           StartCoroutine(ProcessStunImmunity());
      }
@@ -166,6 +174,7 @@ public class ActorModule : MonoBehaviour
 
      private IEnumerator ProcessStun()
      {
+          Instantiate(actorStunEffect, transform.position + actorStunEffectOffset, Quaternion.identity);
           isStunImmune = true;
           Vector3 forceVelocity = new Vector3();
           forceVelocity.x = Random.Range(200f, 500f) * Mathf.Round(Random.Range(-1f, 1f));

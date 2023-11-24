@@ -151,6 +151,14 @@ MonoBehaviour:
   _rigidbody: {fileID: 3801140880472300825}
   holdableState: 0
   holdableType: 0
+  holdableHp: 100
+  isThrown: 0
+  _holdableScanCollider: {fileID: 0}
+  _holdableScanInterval: 0.1
+  _holdableScanLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  _wallHitEffect: {fileID: 113576, guid: 471088445f741e64c82f447ba7849c30, type: 3}
 --- !u!1 &7733628255406856370
 GameObject:
   m_ObjectHideFlags: 0

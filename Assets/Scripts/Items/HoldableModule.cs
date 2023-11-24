@@ -24,7 +24,9 @@ public class HoldableModule : MonoBehaviour
 
      public HoldableState     holdableState       = HoldableState.Free;
      public HoldableType      holdableType        = HoldableType.Trash;
-     public int               holdableHp          = 100;
+     public int              holdableHp          = 100;
+
+     public bool isThrown = false;
 
      [SerializeField]
      private Collider _holdableScanCollider;
@@ -33,11 +35,51 @@ public class HoldableModule : MonoBehaviour
      [SerializeField]
      private LayerMask _holdableScanLayerMask;
 
+     [SerializeField]
+     private GameObject _wallHitEffect;
+     
      private void Start()
      {
           RegisterHoldable();
 
           if (holdableType == HoldableType.Tool) StartCoroutine(HoldableScan());
+     }
+
+     public void StartThrowRoutine()
+     {
+          if (isThrown) return;
+          isThrown = true;
+
+          StartCoroutine(ThrowStateCoroutine());
+     }
+
+     private IEnumerator ThrowStateCoroutine()
+     {
+          float pastMagnitude = 0f;
+          float currentMagnitude = 0f;
+          
+          while (true)
+          {
+               currentMagnitude = _rigidbody.velocity.magnitude;
+
+               if (pastMagnitude - currentMagnitude > 2f)
+               {
+                    FireWallHitEffect();
+                    break;
+               }
+
+               pastMagnitude = currentMagnitude;
+               yield return null;
+          }
+
+          isThrown = false;
+          yield return null;
+     }
+
+     private void FireWallHitEffect()
+     {
+          Debug.Log("hit wall");
+          Instantiate(_wallHitEffect, transform.position, Quaternion.identity);
      }
 
      private void RegisterHoldable()
