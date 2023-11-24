@@ -24,7 +24,8 @@ public class HoldableModule : MonoBehaviour
 
      public HoldableState     holdableState       = HoldableState.Free;
      public HoldableType      holdableType        = HoldableType.Trash;
-     public int              holdableHp          = 100;
+     public int               holdableHpMax       = 100;
+     public int               holdableHp          = 100;
 
      public bool isThrown = false;
 
@@ -78,7 +79,6 @@ public class HoldableModule : MonoBehaviour
 
      private void FireWallHitEffect()
      {
-          Debug.Log("hit wall");
           Instantiate(_wallHitEffect, transform.position, Quaternion.identity);
      }
 
@@ -139,7 +139,7 @@ public class HoldableModule : MonoBehaviour
                bool m_HitDetect = Physics.BoxCast(transform.position, transform.localScale, Vector3.down, out m_Hit, transform.rotation, 10f, _holdableScanLayerMask);
                if (m_HitDetect)
                {
-                    m_Hit.transform.GetComponent<HoldableModule>().PushDamage(10);
+                    m_Hit.transform.GetComponent<HoldableModule>().PushDamage(5);
                }
                
                yield return new WaitForSeconds(_holdableScanInterval);

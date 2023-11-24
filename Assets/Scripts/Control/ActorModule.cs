@@ -156,6 +156,7 @@ public class ActorModule : MonoBehaviour
                
                _holdableGameObject.transform.SetParent(_holdPositionTransform);
                _holdableGameObject.transform.localPosition = Vector3.zero;
+               _holdableGameObject.transform.localEulerAngles = Vector3.zero;
 
                handState = HandState.Holding;
           }
@@ -209,6 +210,6 @@ public class ActorModule : MonoBehaviour
      {
           float impactMagnitude = other.attachedRigidbody.velocity.magnitude;
 
-          if (impactMagnitude > 8f) ActorStun();
+          if (impactMagnitude > 12f) ActorStun();
      }
 }

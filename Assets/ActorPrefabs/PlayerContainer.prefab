@@ -369,7 +369,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   holdableRaycastDistance: 3
-  actorStunEffect: {fileID: 113576, guid: 471088445f741e64c82f447ba7849c30, type: 3}
+  actorStunEffect: {fileID: 188560, guid: 9c3b7f4ace8832b40abe6afe89fbcd91, type: 3}
   actorStunEffectOffset: {x: 0, y: 1.7, z: 0}
   _inputAxis: {x: 0, y: 0}
   _rigidbody: {fileID: 1272750583051100914}
