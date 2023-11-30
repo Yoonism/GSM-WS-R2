@@ -134,7 +134,7 @@ public class ActorModule : MonoBehaviour
      {
           Vector3 throwForce = transform.TransformDirection(Vector3.forward) + new Vector3(0f, 0.3f, 0f);
           AttemptReleaseObject();
-          _holdableRigidbody.AddForce(throwForce * 2000f);
+          _holdableRigidbody.AddForce(throwForce * 1000f);
           _holdableModule.StartThrowRoutine();
 
           StartCoroutine(ProcessStunImmunity());
