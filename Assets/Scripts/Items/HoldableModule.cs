@@ -22,8 +22,17 @@ public class HoldableModule : MonoBehaviour
           Tool
      }
 
+     public enum TrashType
+     {
+          NotTrash = 0,
+          Basic,
+          Clothes,
+          Dishes
+     }
+
      public HoldableState     holdableState       = HoldableState.Free;
      public HoldableType      holdableType        = HoldableType.Trash;
+     public TrashType         trashType           = TrashType.NotTrash;
      public int               holdableHpMax       = 100;
      public int               holdableHp          = 100;
 

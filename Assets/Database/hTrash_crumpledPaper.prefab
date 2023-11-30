@@ -151,6 +151,7 @@ MonoBehaviour:
   _rigidbody: {fileID: 3801140880472300825}
   holdableState: 0
   holdableType: 0
+  trashType: 1
   holdableHpMax: 100
   holdableHp: 100
   isThrown: 0
