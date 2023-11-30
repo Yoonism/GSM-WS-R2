@@ -310,7 +310,6 @@ GameObject:
   - component: {fileID: 6642936697977335561}
   - component: {fileID: 8183082127447533618}
   - component: {fileID: 1272750583051100914}
-  - component: {fileID: 441501732630541746}
   m_Layer: 0
   m_Name: PlayerContainer
   m_TagString: Untagged
@@ -352,6 +351,7 @@ MonoBehaviour:
   _inputAxis: {x: 0, y: 0}
   _inputAction: 000000
   _actorModuleToPosess: {fileID: 8183082127447533618}
+  J2X: 0
 --- !u!114 &8183082127447533618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -403,32 +403,9 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 112
-  m_CollisionDetection: 0
---- !u!136 &441501732630541746
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7965820647470108579}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.8
-  m_Height: 2.28
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.69, z: 0}
+  m_CollisionDetection: 2
 --- !u!1001 &5764892113481446333
 PrefabInstance:
   m_ObjectHideFlags: 0

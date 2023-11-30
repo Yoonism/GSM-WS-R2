@@ -33,7 +33,7 @@ public class TEST_TCAN : MonoBehaviour
           }
           else
           {
-               Debug.Log("Collision with non-basic trash");
+               //Debug.Log("Collision with non-basic trash");
           }
      }
 }

@@ -87,8 +87,8 @@ public class ActorModule : MonoBehaviour
           _rotationQuaternion = Quaternion.LookRotation(_desiredForward);
           
           // move rigidbody
-          _rigidbody.MovePosition(_rigidbody.position + _movementTarget * _movementSpeedMultiplier * Time.deltaTime);
-          _rigidbody.MoveRotation(_rotationQuaternion);
+          _rigidbody.Move(_rigidbody.position + _movementTarget * _movementSpeedMultiplier * Time.deltaTime, _rotationQuaternion);
+          //_rigidbody.MoveRotation(_rotationQuaternion);
      }
 
      private void UpdateAction()
