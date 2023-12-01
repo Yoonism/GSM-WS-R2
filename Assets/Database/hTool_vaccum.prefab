@@ -236,9 +236,17 @@ MonoBehaviour:
   _rigidbody: {fileID: 3801140880472300825}
   holdableState: 0
   holdableType: 2
+  trashType: 0
+  holdableHpMax: 100
   holdableHp: 100
+  holdableValue: 500
+  isThrown: 0
   _holdableScanCollider: {fileID: 0}
   _holdableScanInterval: 0.1
+  _holdableScanLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  _wallHitEffect: {fileID: 0}
 --- !u!65 &3223179281058837375
 BoxCollider:
   m_ObjectHideFlags: 0

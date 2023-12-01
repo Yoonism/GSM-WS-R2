@@ -5,13 +5,15 @@ using UnityEngine;
 
 public class ControllerPersistant : MonoBehaviour
 {
-     public float roundTimeMax = 90f;
-     public float roundTime;
+     public float   roundTimeMax        = 90f;
+     public float   roundTime;
 
-     public int trashCountMax = 0;
-     public int trashCountCurrent = 0;
+     public int     trashCountMax       = 0;
+     public int     trashCountCurrent   = 0;
 
      public List<HoldableModule> trashRegister = new List<HoldableModule>();
+
+     private int    _totalScore         = 0;
      
      private static ControllerPersistant instance = null;
 
@@ -61,5 +63,15 @@ public class ControllerPersistant : MonoBehaviour
      public int GetRoundTimeInt()
      {
           return Mathf.CeilToInt(roundTime);
+     }
+
+     public void AddScore(int value)
+     {
+          _totalScore += value;
+     }
+
+     public int GetScore()
+     {
+          return _totalScore;
      }
 }

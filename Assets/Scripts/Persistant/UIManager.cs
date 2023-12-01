@@ -14,6 +14,8 @@ public class UIManager : MonoBehaviour
      private TextMeshProUGUI _trashCounterMaxTMP;
      [SerializeField]
      private TextMeshProUGUI _trashCounterCurrentTMP;
+     [SerializeField]
+     private TextMeshProUGUI _scoreCounterTMP;
 
      private void Start()
      {
@@ -24,6 +26,7 @@ public class UIManager : MonoBehaviour
      {
           UpdateTimer();
           UpdateTrashCounter();
+          UpdateScore();
      }
 
      private void UpdateTimer()
@@ -35,5 +38,10 @@ public class UIManager : MonoBehaviour
      {
           _trashCounterCurrentTMP.text = _controllerPersistant.trashCountCurrent.ToString();
           _trashCounterMaxTMP.text = _controllerPersistant.trashCountMax.ToString();
+     }
+
+     private void UpdateScore()
+     {
+          _scoreCounterTMP.text = _controllerPersistant.GetScore().ToString();
      }
 }

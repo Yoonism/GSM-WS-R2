@@ -154,6 +154,7 @@ MonoBehaviour:
   trashType: 1
   holdableHpMax: 100
   holdableHp: 100
+  holdableValue: 100
   isThrown: 0
   _holdableScanCollider: {fileID: 0}
   _holdableScanInterval: 0.1

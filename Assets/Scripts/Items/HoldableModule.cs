@@ -35,6 +35,7 @@ public class HoldableModule : MonoBehaviour
      public TrashType         trashType           = TrashType.NotTrash;
      public int               holdableHpMax       = 100;
      public int               holdableHp          = 100;
+     public int               holdableValue       = 0;
 
      public bool isThrown = false;
 
@@ -47,6 +48,9 @@ public class HoldableModule : MonoBehaviour
 
      [SerializeField]
      private GameObject _wallHitEffect;
+
+     [SerializeField]
+     private bool isActive = true;
      
      private void Start()
      {
@@ -162,14 +166,29 @@ public class HoldableModule : MonoBehaviour
           holdableHp -= damage;
           if (holdableHp <= 0)
           {
-               Destroy(gameObject);
+               DisposeProper();
           }
 
           return 0;
      }
 
-     private void OnDestroy()
+     public void DisposeProper()
      {
+          if (!isActive) return;
+          
+          isActive = false;
           UnregisterHoldable();
+          ControllerPersistant.Instance.AddScore(holdableValue);
+          Destroy(gameObject);
+     }
+
+     public void DisposeImproper()
+     {
+          if (!isActive) return;
+          
+          isActive = false;
+          ControllerPersistant.Instance.AddScore(-holdableValue * 2);
+          UnregisterHoldable();
+          Destroy(gameObject);
      }
 }
