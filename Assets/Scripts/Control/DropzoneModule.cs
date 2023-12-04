@@ -16,6 +16,13 @@ public class DropzoneModule : MonoBehaviour
     [SerializeField]
     private TextMeshPro _cooldownTimerTMP;
     public bool isCoolingDown = false;
+
+    [SerializeField]
+    private bool _canSpawnBugs = false;
+    [SerializeField]
+    private AnimationCurve _bugSpawnRateCurve;
+    [SerializeField]
+    private float _bugSpawnCounter;
     
     private void OnCollisionEnter(Collision other)
     {
@@ -37,6 +44,8 @@ public class DropzoneModule : MonoBehaviour
     {
         if (acceptableTrashType.Contains(otherHoldableModule.trashType)) otherHoldableModule.DisposeProper();
         else otherHoldableModule.DisposeImproper();
+        
+        HandleBugSpawn();
 
         if (cooldownTime > 0f) StartCoroutine(HandleCooldown());
     }
@@ -54,5 +63,24 @@ public class DropzoneModule : MonoBehaviour
         }
 
         isCoolingDown = false;
+    }
+
+    private void HandleBugSpawn()
+    {
+        if (!_canSpawnBugs) return;
+
+        _bugSpawnCounter += 1f;
+        float i = Random.Range(0f, 1f);
+        
+        if (i < _bugSpawnRateCurve.Evaluate(_bugSpawnCounter))
+        {
+            SpawnBug();
+        }
+    }
+
+    public void SpawnBug()
+    {
+        _bugSpawnCounter = 0f;
+        Debug.Log("Bug spawned");
     }
 }

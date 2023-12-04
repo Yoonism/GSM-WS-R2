@@ -165,15 +165,19 @@ MonoBehaviour:
   _rigidbody: {fileID: 3801140880472300825}
   holdableState: 0
   holdableType: 1
+  trashType: 0
   holdableHpMax: 100
   holdableHp: 100
+  holdableValue: 0
   isThrown: 0
   _holdableScanCollider: {fileID: 0}
   _holdableScanInterval: 0.1
   _holdableScanLayerMask:
     serializedVersion: 2
     m_Bits: 0
+  _holdableScaneInteractionType: 0
   _wallHitEffect: {fileID: 0}
+  isActive: 1
 --- !u!1 &6564162794909495518
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,6 +295,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2553443933326239239}
   - component: {fileID: 4588396303681380973}
+  - component: {fileID: 2016630713731589455}
   m_Layer: 6
   m_Name: InteractionCollider
   m_TagString: Untagged
@@ -334,3 +339,16 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 0.13, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2016630713731589455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7733628255406856370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78af5593d12be2b47933b28a645117a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionType: 0

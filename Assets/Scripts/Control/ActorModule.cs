@@ -28,6 +28,11 @@ public class ActorModule : MonoBehaviour
      private float       holdableRaycastDistance  = 5f;
 
      [SerializeField]
+     private float _physicsForceValue = 30f;
+     [SerializeField]
+     private float _physicsMaxVelocity = 8f;
+
+     [SerializeField]
      private GameObject  actorStunEffect;
 
      [SerializeField]
@@ -72,7 +77,8 @@ public class ActorModule : MonoBehaviour
      private void UpdateActor()
      {
           if (actorState != ActorState.Normal) return;
-          UpdateMovement();
+          //UpdateMovement();
+          UpdateMovementPhysics();
           UpdateAction();
      }
      
@@ -89,6 +95,22 @@ public class ActorModule : MonoBehaviour
           // move rigidbody
           _rigidbody.Move(_rigidbody.position + _movementTarget * _movementSpeedMultiplier * Time.deltaTime, _rotationQuaternion);
           //_rigidbody.MoveRotation(_rotationQuaternion);
+     }
+
+     private void UpdateMovementPhysics()
+     {
+          // set movement target
+          _movementTarget.Set(_inputAxis.x, 0f, _inputAxis.y);
+          _movementTarget.Normalize();
+
+          // calculate forward vector
+          _desiredForward = Vector3.RotateTowards(transform.forward, _movementTarget, _turnSpeed * Time.deltaTime, 0f);
+          _rotationQuaternion = Quaternion.LookRotation(_desiredForward);
+
+          _rigidbody.MoveRotation(_rotationQuaternion);
+          _rigidbody.AddForce(_movementTarget * _physicsForceValue);
+
+          _rigidbody.maxLinearVelocity = _physicsMaxVelocity;
      }
 
      private void UpdateAction()
@@ -183,6 +205,8 @@ public class ActorModule : MonoBehaviour
           forceVelocity.z = Random.Range(200f, 500f) * Mathf.Round(Random.Range(-1f, 1f));
 
           _rigidbody.AddForce(forceVelocity);
+
+          CameraManager.Instance.SetCameraShake(3f);
           
           actorState = ActorState.Stunned;
           _rigidbody.freezeRotation = false;

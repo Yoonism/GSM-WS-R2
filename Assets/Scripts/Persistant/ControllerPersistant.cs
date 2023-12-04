@@ -11,9 +11,9 @@ public class ControllerPersistant : MonoBehaviour
      public int     trashCountMax       = 0;
      public int     trashCountCurrent   = 0;
 
-     public List<HoldableModule> trashRegister = new List<HoldableModule>();
-
      private int    _totalScore         = 0;
+     
+     public List<HoldableModule> trashRegister = new List<HoldableModule>();
      
      private static ControllerPersistant instance = null;
 

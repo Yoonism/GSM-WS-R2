@@ -40,14 +40,16 @@ public class HoldableModule : MonoBehaviour
      public bool isThrown = false;
 
      [SerializeField]
-     private Collider _holdableScanCollider;
+     private Collider    _holdableScanCollider;
      [SerializeField]
-     private float _holdableScanInterval = 0.1f;
+     private float       _holdableScanInterval = 0.1f;
      [SerializeField]
-     private LayerMask _holdableScanLayerMask;
+     private LayerMask   _holdableScanLayerMask;
+     [SerializeField]
+     private InteractionModule.InteractionType _holdableScaneInteractionType = InteractionModule.InteractionType.Stain;
 
      [SerializeField]
-     private GameObject _wallHitEffect;
+     private GameObject  _wallHitEffect;
 
      [SerializeField]
      private bool isActive = true;
