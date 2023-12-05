@@ -25,18 +25,17 @@ public class ActorModule : MonoBehaviour
      [SerializeField]
      private LayerMask   holdableObjectLayerMask;
      [SerializeField]
-     private float       holdableRaycastDistance  = 5f;
+     private float      holdableRaycastDistance  = 5f;
 
      [SerializeField]
-     private float _physicsForceValue = 30f;
+     private float      _physicsForceValue = 30f;
      [SerializeField]
-     private float _physicsMaxVelocity = 8f;
+     private float      _physicsMaxVelocity = 8f;
 
      [SerializeField]
      private GameObject  actorStunEffect;
-
      [SerializeField]
-     private Vector3 actorStunEffectOffset;
+     private Vector3     actorStunEffectOffset;
      
      [SerializeField]
      private Vector2     _inputAxis               = new Vector2();
@@ -50,10 +49,12 @@ public class ActorModule : MonoBehaviour
      private Rigidbody   _rigidbody;
      [SerializeField]
      private Transform   _holdPositionTransform;
+     [SerializeField]
+     private Animator    _animator;
      
-     private GameObject _holdableGameObject;
+     private GameObject  _holdableGameObject;
      private HoldableModule _holdableModule;
-     private Rigidbody _holdableRigidbody;
+     private Rigidbody   _holdableRigidbody;
      private HoldableModule.HoldableType _holdableType;
 
      [SerializeField]
@@ -111,6 +112,10 @@ public class ActorModule : MonoBehaviour
           _rigidbody.AddForce(_movementTarget * _physicsForceValue);
 
           _rigidbody.maxLinearVelocity = _physicsMaxVelocity;
+          
+          // handle animation
+          if (_rigidbody.velocity.magnitude > 2f) _animator.SetBool("isWalking", true);
+          else _animator.SetBool("isWalking", false);
      }
 
      private void UpdateAction()

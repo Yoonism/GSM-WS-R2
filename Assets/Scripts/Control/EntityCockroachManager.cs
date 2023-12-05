@@ -7,16 +7,13 @@ using Random = UnityEngine.Random;
 public class EntityCockroachManager : MonoBehaviour
 {
      [SerializeField]
-     private Rigidbody _rigidbody;
+     private Rigidbody   _rigidbody;
      [SerializeField]
-     private float _physicsUpdateInterval;
+     private float       _physicsUpdateInterval;
      [SerializeField]
-     private Vector3 _physicsForceBase = Vector3.zero;
-
+     private Vector3     _physicsForceBase = Vector3.zero;
      [SerializeField]
-     private Vector3 _physicsTorqueBase = Vector3.zero;
-     [SerializeField]
-     private float _physicsForceMultiplier = 10f;
+     private float       _physicsForceMultiplier = 10f;
 
      [SerializeField]
      private float _maxVelocity = 7f;
@@ -30,13 +27,14 @@ public class EntityCockroachManager : MonoBehaviour
 
      private IEnumerator CockroachPhysicsRoutine()
      {
+          yield return new WaitForSeconds(Random.Range(0.01f, 0.3f));
+          
           while (true)
           {
                _physicsForceBase.x = Random.Range(-_physicsForceMultiplier, _physicsForceMultiplier);
                _physicsForceBase.z = Random.Range(-_physicsForceMultiplier, _physicsForceMultiplier);
                
                _rigidbody.AddForce(_physicsForceBase);
-               _rigidbody.AddTorque(_physicsTorqueBase);
                yield return new WaitForSeconds(_physicsUpdateInterval);
           }
      }
@@ -45,7 +43,7 @@ public class EntityCockroachManager : MonoBehaviour
      {
           Quaternion _rotationQuaternion = Quaternion.LookRotation(_rigidbody.velocity);
           _currentRotationQuaternion =
-               Quaternion.Lerp(_currentRotationQuaternion, _rotationQuaternion, Time.deltaTime * 40f);
+               Quaternion.Lerp(_currentRotationQuaternion, _rotationQuaternion, Time.deltaTime * 10f);
           _rigidbody.MoveRotation(_currentRotationQuaternion);
      }
 }
