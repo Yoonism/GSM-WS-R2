@@ -23,6 +23,13 @@ public class DropzoneModule : MonoBehaviour
     private AnimationCurve _bugSpawnRateCurve;
     [SerializeField]
     private float _bugSpawnCounter;
+    [SerializeField]
+    private int _bugSpawnNumber = 6;
+    [SerializeField]
+    private GameObject _bugSpawnPrefab;
+    [SerializeField]
+    private Transform _bugSpawnPointTransform;
+    
     
     private void OnCollisionEnter(Collision other)
     {
@@ -81,6 +88,10 @@ public class DropzoneModule : MonoBehaviour
     public void SpawnBug()
     {
         _bugSpawnCounter = 0f;
-        Debug.Log("Bug spawned");
+
+        for (int i = 0; i < _bugSpawnNumber; i++)
+        {
+            Instantiate(_bugSpawnPrefab, _bugSpawnPointTransform.position, Quaternion.identity);
+        }
     }
 }
