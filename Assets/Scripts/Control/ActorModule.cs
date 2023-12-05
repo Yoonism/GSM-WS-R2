@@ -25,7 +25,7 @@ public class ActorModule : MonoBehaviour
      [SerializeField]
      private LayerMask   holdableObjectLayerMask;
      [SerializeField]
-     private float      holdableRaycastDistance  = 5f;
+     private float       holdableRaycastDistance  = 5f;
 
      [SerializeField]
      private float      _physicsForceValue = 30f;
@@ -39,7 +39,7 @@ public class ActorModule : MonoBehaviour
      
      [SerializeField]
      private Vector2     _inputAxis               = new Vector2();
-     private bool[]     _inputAction             = new bool[2];
+     private bool[]      _inputAction             = new bool[2];
      
      private Vector3     _movementTarget          = Vector3.zero;
      private Quaternion  _rotationQuaternion      = Quaternion.identity;
