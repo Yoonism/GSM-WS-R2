@@ -583,7 +583,8 @@ GameObject:
   - component: {fileID: 1581678853527192132}
   - component: {fileID: 5364064956307341271}
   - component: {fileID: 8009946932952714639}
-  m_Layer: 0
+  - component: {fileID: 1760321823705529911}
+  m_Layer: 6
   m_Name: e_Cockroach
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -671,9 +672,21 @@ MonoBehaviour:
   _rigidbody: {fileID: 5364064956307341271}
   _physicsUpdateInterval: 0.2
   _physicsForceBase: {x: 0, y: 0, z: -1}
-  _physicsTorqueBase: {x: 0, y: 0, z: 0}
   _physicsForceMultiplier: 50
   _maxVelocity: 7
+--- !u!114 &1760321823705529911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7483030814433882044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78af5593d12be2b47933b28a645117a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionType: 3
 --- !u!1 &7501885703460386112
 GameObject:
   m_ObjectHideFlags: 0

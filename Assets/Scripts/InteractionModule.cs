@@ -13,4 +13,9 @@ public class InteractionModule : MonoBehaviour
      }
 
      public InteractionType interactionType = InteractionType.Trash;
+
+     public void TEST_PUSH_DESTROY()
+     {
+          Destroy(gameObject);
+     }
 }

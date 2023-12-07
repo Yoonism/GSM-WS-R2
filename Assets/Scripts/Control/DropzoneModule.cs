@@ -34,8 +34,11 @@ public class DropzoneModule : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         if(isCoolingDown) return;
-        
-        HoldableModule otherHoldableModule = other.transform.GetComponent<HoldableModule>();
+
+        HoldableModule otherHoldableModule;
+        bool hasComponent = other.transform.TryGetComponent<HoldableModule>(out otherHoldableModule);
+
+        if (!hasComponent) return;
 
         switch (otherHoldableModule.holdableType)
         {

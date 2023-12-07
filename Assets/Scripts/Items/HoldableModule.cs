@@ -46,7 +46,7 @@ public class HoldableModule : MonoBehaviour
      [SerializeField]
      private LayerMask   _holdableScanLayerMask;
      [SerializeField]
-     private InteractionModule.InteractionType _holdableScaneInteractionType = InteractionModule.InteractionType.Stain;
+     private InteractionModule.InteractionType _holdableScanInteractionType = InteractionModule.InteractionType.Stain;
 
      [SerializeField]
      private GameObject  _wallHitEffect;
@@ -58,7 +58,7 @@ public class HoldableModule : MonoBehaviour
      {
           RegisterHoldable();
 
-          if (holdableType == HoldableType.Tool) StartCoroutine(HoldableScan());
+          //if (holdableType == HoldableType.Tool) StartCoroutine(HoldableScan());
      }
 
      public void StartThrowRoutine()
@@ -80,7 +80,9 @@ public class HoldableModule : MonoBehaviour
 
                if (pastMagnitude - currentMagnitude > 2f)
                {
-                    FireWallHitEffect();
+                    if(trashType == TrashType.Dishes)  CrashTrash();
+                    else FireWallHitEffect();
+                    
                     break;
                }
 
@@ -95,6 +97,12 @@ public class HoldableModule : MonoBehaviour
      private void FireWallHitEffect()
      {
           Instantiate(_wallHitEffect, transform.position, Quaternion.identity);
+     }
+
+     private void CrashTrash()
+     {
+          FireWallHitEffect();
+          DisposeImproper();
      }
 
      private void RegisterHoldable()
@@ -146,19 +154,26 @@ public class HoldableModule : MonoBehaviour
           return true;
      }
 
-     private IEnumerator HoldableScan()
+     private void FixedUpdate()
      {
-          while (true)
-          {
+          if (holdableType != HoldableType.Tool) return;
+
                RaycastHit m_Hit;
                bool m_HitDetect = Physics.BoxCast(transform.position, transform.localScale, Vector3.down, out m_Hit, transform.rotation, 10f, _holdableScanLayerMask);
                if (m_HitDetect)
                {
-                    m_Hit.transform.GetComponent<HoldableModule>().PushDamage(5);
+                    if (m_Hit.transform.GetComponent<InteractionModule>().interactionType ==
+                        _holdableScanInteractionType)
+                    {
+                         if (_holdableScanInteractionType == InteractionModule.InteractionType.Stain)
+                              m_Hit.transform.GetComponentInParent<HoldableModule>().PushDamage(5);
+                         else
+                         {
+                              m_Hit.transform.GetComponent<InteractionModule>().TEST_PUSH_DESTROY();
+                         }
+                    }
                }
-               
-               yield return new WaitForSeconds(_holdableScanInterval);
-          }
+          
      }
 
      public int PushDamage(int damage)

@@ -14,6 +14,8 @@ public class PuppeteerPlayerInput : MonoBehaviour
      private ActorModule _actorModuleToPosess;
 
      public bool J2X = false;
+
+     public int inputIndex = 0;
      
      private void Update()
      {
@@ -23,24 +25,30 @@ public class PuppeteerPlayerInput : MonoBehaviour
      
      private void RecieveInputs()
      {
-          if (!J2X)
+          switch (inputIndex)
           {
-               _inputAxis.x = Input.GetAxis("Horizontal");
-               _inputAxis.y = Input.GetAxis("Vertical");
+               case 0:
+                    _inputAxis.x = Input.GetAxis("Horizontal");
+                    _inputAxis.y = Input.GetAxis("Vertical");
                
-               _inputAction[0] = Input.GetKeyDown(KeyCode.E);
-               _inputAction[1] = Input.GetKeyDown(KeyCode.R);
-          }
-          else
-          {
-               _inputAxis.x = Input.GetAxis("J2X");
-               _inputAxis.y = Input.GetAxis("J2Y");
+                    _inputAction[0] = Input.GetKeyDown(KeyCode.E);
+                    _inputAction[1] = Input.GetKeyDown(KeyCode.R);
+                    break;
+               case 1:
+                    _inputAxis.x = Input.GetAxis("J2X");
+                    _inputAxis.y = Input.GetAxis("J2Y");
                
-               _inputAction[0] = Input.GetButtonDown("J2A");
-               _inputAction[1] = Input.GetButtonDown("J2B");
+                    _inputAction[0] = Input.GetButtonDown("J2A");
+                    _inputAction[1] = Input.GetButtonDown("J2B");
+                    break;
+               case 2:
+                    _inputAxis.x = Input.GetAxis("J3X");
+                    _inputAxis.y = Input.GetAxis("J3Y");
+               
+                    _inputAction[0] = Input.GetButtonDown("J3A");
+                    _inputAction[1] = Input.GetButtonDown("J3B");
+                    break;
           }
-
-
      }
 
      private void PushInputs()
