@@ -269,6 +269,7 @@ GameObject:
   - component: {fileID: 2747182757335554195}
   - component: {fileID: 1339833075270394941}
   - component: {fileID: 1452603368296856007}
+  - component: {fileID: 5587432582093265388}
   - component: {fileID: 7227394126144238162}
   - component: {fileID: 401682344328601090}
   m_Layer: 8
@@ -363,9 +364,30 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &5587432582093265388
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8314514270306431432}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.77, y: 0.51, z: 2.1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &7227394126144238162
 Rigidbody:
@@ -420,5 +442,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   _holdableScanInteractionType: 0
-  _wallHitEffect: {fileID: 113576, guid: 471088445f741e64c82f447ba7849c30, type: 3}
+  _wallHitEffect: {fileID: 1791144729913606, guid: 4e857e4ca7072874ea6f813587ce3d60,
+    type: 3}
   isActive: 1

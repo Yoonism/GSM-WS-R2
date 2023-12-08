@@ -13,10 +13,13 @@ public class InteractionModule : MonoBehaviour
      }
 
      public InteractionType interactionType = InteractionType.Trash;
+     [SerializeField] private GameObject _deathEffect;
 
      public void TEST_PUSH_DESTROY()
      {
           ControllerPersistant.Instance.DecreaseTrashType(ControllerPersistant.TrashType.Roaches);
+          Instantiate(_deathEffect, transform.position, Quaternion.identity);
+          ControllerPersistant.Instance.AddScore(20);
           Destroy(gameObject);
      }
 }

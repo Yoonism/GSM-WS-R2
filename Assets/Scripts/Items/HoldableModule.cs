@@ -53,7 +53,9 @@ public class HoldableModule : MonoBehaviour
 
      [SerializeField]
      private bool isActive = true;
-     
+
+     [SerializeField]
+     private AudioSource _toolAudioSource;
      private void Start()
      {
           RegisterHoldable();
@@ -100,12 +102,15 @@ public class HoldableModule : MonoBehaviour
 
      private void CrashTrash()
      {
+          CameraManager.Instance.SetCameraShake(4f);
           FireWallHitEffect();
           DisposeImproper();
      }
 
      private void RegisterHoldable()
      {
+          MasterController.Instance.maxMasterScore += holdableValue;
+          
           /*
           switch (holdableType)
           {
@@ -204,6 +209,16 @@ public class HoldableModule : MonoBehaviour
      private void FixedUpdate()
      {
           if (holdableType != HoldableType.Tool) return;
+          
+          //handle sound
+          if (_rigidbody.isKinematic)
+          {
+               _toolAudioSource.volume = Mathf.Clamp(_toolAudioSource.volume + 0.01f, 0f, 0.5f);
+          }
+          else
+          {
+               _toolAudioSource.volume = Mathf.Clamp(_toolAudioSource.volume - 0.05f, 0f, 0.5f);
+          }
 
                RaycastHit m_Hit;
                bool m_HitDetect = Physics.BoxCast(transform.position, transform.localScale, Vector3.down, out m_Hit, transform.rotation, 10f, _holdableScanLayerMask);
@@ -251,7 +266,8 @@ public class HoldableModule : MonoBehaviour
           if (!isActive) return;
           
           isActive = false;
-          ControllerPersistant.Instance.AddScore(-holdableValue * 2);
+          ControllerPersistant.Instance.AddScore(-holdableValue);
+          CameraManager.Instance.SetCameraShake(3f);
           UnregisterHoldable();
           Destroy(gameObject);
      }

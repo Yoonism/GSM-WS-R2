@@ -128,7 +128,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 4149930081746721288, guid: 7640be07c03e0b449a4803943c7a2303, type: 3}
+  - {fileID: 2100000, guid: 2cf3a213f70107d46bdfea2ca9fce140, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -312,5 +312,5 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   _holdableScanInteractionType: 0
-  _wallHitEffect: {fileID: 113576, guid: 471088445f741e64c82f447ba7849c30, type: 3}
+  _wallHitEffect: {fileID: 183222, guid: f2ee009e61b1177489331d95174281b1, type: 3}
   isActive: 1

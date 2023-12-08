@@ -163,7 +163,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   _holdableScanInteractionType: 0
-  _wallHitEffect: {fileID: 113576, guid: 471088445f741e64c82f447ba7849c30, type: 3}
+  _wallHitEffect: {fileID: 1950252074805080808, guid: 447bfc4e57ef5bd45b619a736ee9e01d,
+    type: 3}
   isActive: 1
 --- !u!114 &5885784624904113129
 MonoBehaviour:

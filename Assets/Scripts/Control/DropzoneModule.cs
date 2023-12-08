@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
 using TMPro;
+using Random = UnityEngine.Random;
 
 public class DropzoneModule : MonoBehaviour
 {
@@ -29,8 +31,25 @@ public class DropzoneModule : MonoBehaviour
     private GameObject _bugSpawnPrefab;
     [SerializeField]
     private Transform _bugSpawnPointTransform;
+
+    [SerializeField]
+    private Transform _meshTransform;
+
+    private Vector3 _meshStartScale;
+
+    [SerializeField]
+    private float _meshMultiplier = 1.5f;
+
+    [SerializeField]
+    private GameObject _properDisposalEffect;
+
+    [SerializeField]
+    private AudioSource _audioSource;
     
-    
+    private void Start()
+    {
+        _meshStartScale = _meshTransform.localScale;
+    }
     private void OnCollisionEnter(Collision other)
     {
         if(isCoolingDown) return;
@@ -52,12 +71,24 @@ public class DropzoneModule : MonoBehaviour
 
     private void HandleTrash(HoldableModule otherHoldableModule)
     {
-        if (acceptableTrashType.Contains(otherHoldableModule.trashType)) otherHoldableModule.DisposeProper();
+        if (acceptableTrashType.Contains(otherHoldableModule.trashType))
+        {
+            Instantiate(_properDisposalEffect, otherHoldableModule.transform.position, Quaternion.identity);
+            otherHoldableModule.DisposeProper();
+        }
         else otherHoldableModule.DisposeImproper();
         
         HandleBugSpawn();
+        _audioSource.Play();
 
         if (cooldownTime > 0f) StartCoroutine(HandleCooldown());
+
+        _meshTransform.localScale = _meshStartScale * _meshMultiplier;
+    }
+
+    private void Update()
+    {
+        _meshTransform.localScale = Vector3.Lerp(_meshTransform.localScale, _meshStartScale, Time.deltaTime * 20f);
     }
 
     private IEnumerator HandleCooldown()
@@ -68,7 +99,7 @@ public class DropzoneModule : MonoBehaviour
         while (time < cooldownTime)
         {
             time += Time.deltaTime;
-            _cooldownTimerTMP.text = Mathf.Ceil(cooldownTime - time).ToString();
+            //_cooldownTimerTMP.text = Mathf.Ceil(cooldownTime - time).ToString();
             yield return null;
         }
 

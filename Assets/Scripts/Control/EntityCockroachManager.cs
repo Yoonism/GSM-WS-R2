@@ -26,6 +26,7 @@ public class EntityCockroachManager : MonoBehaviour
           StartCoroutine(CockroachPhysicsRoutine());
           StartCoroutine(CockroachJumpRoutine());
           
+          MasterController.Instance.maxMasterScore += 20;
           ControllerPersistant.Instance.IncreaseTrashType(ControllerPersistant.TrashType.Roaches);
      }
 

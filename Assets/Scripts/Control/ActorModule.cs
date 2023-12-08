@@ -66,6 +66,11 @@ public class ActorModule : MonoBehaviour
      public HandState    handState                = HandState.Empty;
      public ActorState   actorState               = ActorState.Normal;
 
+     [SerializeField] private AudioSource _audioSource;
+     [SerializeField] private AudioClip _ACGrabObject;
+     [SerializeField] private AudioClip _ACThrowObject;
+     [SerializeField] private AudioClip _ACStun;
+
      public bool isStunImmune = false;
 
      public void RecieveInputs(Vector2 inputAxisToRecieve, bool[] inputActionToRecieve)
@@ -164,6 +169,8 @@ public class ActorModule : MonoBehaviour
           _holdableRigidbody.AddForce(throwForce * 1000f);
           _holdableModule.StartThrowRoutine();
 
+          _audioSource.PlayOneShot(_ACThrowObject);
+          
           StartCoroutine(ProcessStunImmunity());
      }
 
@@ -186,6 +193,8 @@ public class ActorModule : MonoBehaviour
                _holdableGameObject.transform.localEulerAngles = Vector3.zero;
 
                handState = HandState.Holding;
+
+               _audioSource.PlayOneShot(_ACGrabObject);
           }
      }
 
@@ -202,6 +211,7 @@ public class ActorModule : MonoBehaviour
 
      private IEnumerator ProcessStun()
      {
+          _audioSource.PlayOneShot(_ACStun);
           Instantiate(actorStunEffect, transform.position + actorStunEffectOffset, Quaternion.identity);
           isStunImmune = true;
           Vector3 forceVelocity = new Vector3();

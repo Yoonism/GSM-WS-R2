@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ControllerPersistant : MonoBehaviour
 {
@@ -22,6 +23,12 @@ public class ControllerPersistant : MonoBehaviour
      [SerializeField]
      private UIManager _uiManager;
 
+     [SerializeField]
+     private GameObject[] _playerObjects = new GameObject[3];
+
+     [SerializeField]
+     private GameObject _endCard;
+
      public enum TrashType
      {
           Basic= 0,
@@ -34,7 +41,7 @@ public class ControllerPersistant : MonoBehaviour
      private void Awake()
      {
                instance = this;
-               DontDestroyOnLoad(this.gameObject);
+               //DontDestroyOnLoad(this.gameObject);
                roundTime = roundTimeMax;
      }
      
@@ -66,7 +73,23 @@ public class ControllerPersistant : MonoBehaviour
 
      private void FixedUpdate()
      {
-          roundTime -= Time.deltaTime;
+          if (roundTime > 0f)
+          {
+               roundTime -= Time.deltaTime;
+          }
+          else
+          {
+               StopTimer();
+          }
+     }
+
+     private void StopTimer()
+     {
+          if (roundTime == 0f) return;
+
+          MasterController.Instance.masterScore = _totalScore;
+          _endCard.SetActive(true);
+          roundTime = 0f;
      }
 
      public float GetRoundTimeRatio()
@@ -82,6 +105,8 @@ public class ControllerPersistant : MonoBehaviour
      public void AddScore(int value)
      {
           _totalScore += value;
+          
+          if(value < 0) _uiManager.SetRedFlash();
      }
 
      public int GetScore()
