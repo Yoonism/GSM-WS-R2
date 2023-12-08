@@ -17,6 +17,20 @@ public class ControllerPersistant : MonoBehaviour
      
      private static ControllerPersistant instance = null;
 
+     public int[] trashTypeCounter = new int[5];
+
+     [SerializeField]
+     private UIManager _uiManager;
+
+     public enum TrashType
+     {
+          Basic= 0,
+          Dishes,
+          Clothes,
+          Stains,
+          Roaches
+     }
+
      private void Awake()
      {
                instance = this;
@@ -73,5 +87,17 @@ public class ControllerPersistant : MonoBehaviour
      public int GetScore()
      {
           return _totalScore;
+     }
+
+     public void IncreaseTrashType(TrashType type)
+     {
+          trashTypeCounter[(int)type]++;
+          _uiManager.UpdateTrashCounter((int)type, trashTypeCounter[(int)type]);
+     }
+     
+     public void DecreaseTrashType(TrashType type)
+     {
+          trashTypeCounter[(int)type]--;
+          _uiManager.UpdateTrashCounter((int)type, trashTypeCounter[(int)type]);
      }
 }

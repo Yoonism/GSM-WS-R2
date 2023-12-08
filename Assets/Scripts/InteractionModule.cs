@@ -16,6 +16,7 @@ public class InteractionModule : MonoBehaviour
 
      public void TEST_PUSH_DESTROY()
      {
+          ControllerPersistant.Instance.DecreaseTrashType(ControllerPersistant.TrashType.Roaches);
           Destroy(gameObject);
      }
 }

@@ -25,6 +25,8 @@ public class EntityCockroachManager : MonoBehaviour
           _rigidbody.maxLinearVelocity = _maxVelocity;
           StartCoroutine(CockroachPhysicsRoutine());
           StartCoroutine(CockroachJumpRoutine());
+          
+          ControllerPersistant.Instance.IncreaseTrashType(ControllerPersistant.TrashType.Roaches);
      }
 
      private IEnumerator CockroachJumpRoutine()

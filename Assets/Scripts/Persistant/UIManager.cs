@@ -17,6 +17,9 @@ public class UIManager : MonoBehaviour
      [SerializeField]
      private TextMeshProUGUI _scoreCounterTMP;
 
+     [SerializeField]
+     private TextMeshProUGUI[] _trashCounterTMP;
+
      private void Start()
      {
           _controllerPersistant = ControllerPersistant.Instance;
@@ -25,19 +28,17 @@ public class UIManager : MonoBehaviour
      private void Update()
      {
           UpdateTimer();
-          UpdateTrashCounter();
           UpdateScore();
+     }
+
+     public void UpdateTrashCounter(int type, int value)
+     {
+          _trashCounterTMP[type].text = value.ToString();
      }
 
      private void UpdateTimer()
      {
           _timerTMP.text = _controllerPersistant.GetRoundTimeInt().ToString();
-     }
-
-     private void UpdateTrashCounter()
-     {
-          _trashCounterCurrentTMP.text = _controllerPersistant.trashCountCurrent.ToString();
-          _trashCounterMaxTMP.text = _controllerPersistant.trashCountMax.ToString();
      }
 
      private void UpdateScore()

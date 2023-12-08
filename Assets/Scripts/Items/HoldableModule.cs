@@ -57,7 +57,6 @@ public class HoldableModule : MonoBehaviour
      private void Start()
      {
           RegisterHoldable();
-
           //if (holdableType == HoldableType.Tool) StartCoroutine(HoldableScan());
      }
 
@@ -107,6 +106,7 @@ public class HoldableModule : MonoBehaviour
 
      private void RegisterHoldable()
      {
+          /*
           switch (holdableType)
           {
                case HoldableType.Trash:
@@ -118,10 +118,56 @@ public class HoldableModule : MonoBehaviour
                default:
                     break;
           }
+          */
+
+          if (holdableType == HoldableType.Stain)
+          {
+               ControllerPersistant.Instance.IncreaseTrashType(ControllerPersistant.TrashType.Stains);
+          }
+          else if(holdableType == HoldableType.Trash)
+          {
+               switch (trashType)
+               {
+                    case TrashType.Basic:
+                         ControllerPersistant.Instance.IncreaseTrashType(ControllerPersistant.TrashType.Basic);
+                         break;
+                    case TrashType.Dishes:
+                         ControllerPersistant.Instance.IncreaseTrashType(ControllerPersistant.TrashType.Dishes);
+                         break;
+                    case TrashType.Clothes:
+                         ControllerPersistant.Instance.IncreaseTrashType(ControllerPersistant.TrashType.Clothes);
+                         break;
+                    default:
+                         break;
+               }
+          }
      }
      
      private void UnregisterHoldable()
      {
+          if (holdableType == HoldableType.Stain)
+          {
+               ControllerPersistant.Instance.DecreaseTrashType(ControllerPersistant.TrashType.Stains);
+          }
+          else if(holdableType == HoldableType.Trash)
+          {
+               switch (trashType)
+               {
+                    case TrashType.Basic:
+                         ControllerPersistant.Instance.DecreaseTrashType(ControllerPersistant.TrashType.Basic);
+                         break;
+                    case TrashType.Dishes:
+                         ControllerPersistant.Instance.DecreaseTrashType(ControllerPersistant.TrashType.Dishes);
+                         break;
+                    case TrashType.Clothes:
+                         ControllerPersistant.Instance.DecreaseTrashType(ControllerPersistant.TrashType.Clothes);
+                         break;
+                    default:
+                         break;
+               }
+          }
+          
+          /*
           switch (holdableType)
           {
                case HoldableType.Trash:
@@ -133,6 +179,7 @@ public class HoldableModule : MonoBehaviour
                default:
                     break;
           }
+          */
      }
 
      public bool AttemptHold()
