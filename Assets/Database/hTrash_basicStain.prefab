@@ -120,7 +120,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 0.85
   m_Center: {x: 0, y: 0, z: 0}
@@ -244,8 +244,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0.13, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 2.6615229, y: 0.13, z: 1.3180275}
+  m_Center: {x: 0.04930401, y: 0, z: 0.15901393}
 --- !u!114 &2016630713731589455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,7 +275,7 @@ PrefabInstance:
     - target: {fileID: 1646606770205831612, guid: c20838fa4be216f48a77134941d50b5e,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 2147483647
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2130832157444107014, guid: c20838fa4be216f48a77134941d50b5e,
         type: 3}

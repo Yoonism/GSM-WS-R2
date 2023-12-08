@@ -166,7 +166,7 @@ public class HoldableModule : MonoBehaviour
                         _holdableScanInteractionType)
                     {
                          if (_holdableScanInteractionType == InteractionModule.InteractionType.Stain)
-                              m_Hit.transform.GetComponentInParent<HoldableModule>().PushDamage(5);
+                              m_Hit.transform.GetComponentInParent<HoldableModule>().PushDamage(1);
                          else
                          {
                               m_Hit.transform.GetComponent<InteractionModule>().TEST_PUSH_DESTROY();
